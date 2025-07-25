@@ -116,39 +116,3 @@ class DatabaseManager:
         except Exception as e:
             logger.error(f"Error retrieving database schema: {e}")
             raise
-
-
-if __name__ == "__main__":
-    # The DatabaseManager constructor now handles loading .env and constructing the URI
-    # No need to load_dotenv() or construct DATABASE_URI here anymore.
-
-    logger.info("Attempting to initialize DatabaseManager...")
-
-    try:
-        # Create an instance of DatabaseManager - no arguments needed
-        # For a local MySQL setup with a 'root' user, your .env file should look like this:
-        # DB_USER="root"
-        # DB_PASSWORD="your_root_password" # Replace with your actual root password
-        # DB_HOST="localhost"
-        # DB_PORT="3306"
-        # DB_NAME="classicmodels" # Or your specific database name
-
-        db_manager = DatabaseManager()
-
-        # Access the Langchain SQLDatabase object
-        langchain_sql_db = db_manager.get_langchain_db()
-        logger.info(f"Langchain DB dialect: {langchain_sql_db.dialect}")
-        logger.info(f"Langchain DB usable table names: {langchain_sql_db.get_usable_table_names()}")
-
-        # Get and print the database schema
-        db_schema = db_manager.get_database_schema()
-        logger.info("\n--- Database Schema ---")
-        for table, cols in db_schema.items():
-            logger.info(f"Table: {table}")
-            for col in cols:
-                logger.info(f"  - {col['name']} ({col['type']})")
-
-        logger.info("\nSuccessfully initialized and used DatabaseManager.")
-
-    except Exception as e:
-        logger.error(f"An error occurred during example usage of DatabaseManager: {e}")

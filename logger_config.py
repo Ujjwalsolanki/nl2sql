@@ -2,7 +2,6 @@
 
 import logging
 import os
-from datetime import datetime
 
 def setup_logging(
     log_file: str = "nl2sql_app.log",
@@ -51,21 +50,3 @@ def setup_logging(
 
     print(f"Logging configured. Level: {log_level.upper()}. Logs will be saved to '{os.path.join('logs', log_file)}' and/or console.")
     return logger
-
-# Example Usage (for testing this module directly)
-if __name__ == "__main__":
-    # Setup logging with a specific file and level
-    app_logger = setup_logging(log_file="debug_nl2sql.log", log_level="DEBUG")
-
-    app_logger.debug("This is a DEBUG message.")
-    app_logger.info("This is an INFO message.")
-    app_logger.warning("This is a WARNING message.")
-    app_logger.error("This is an ERROR message.")
-    app_logger.critical("This is a CRITICAL message.")
-
-    # You can also get the logger instance from anywhere in your app
-    # by calling logging.getLogger("nl2sql_app") after setup_logging has been called once.
-    another_logger_instance = logging.getLogger("nl2sql_app")
-    another_logger_instance.info("This message is from another instance, but uses the same configuration.")
-
-    print("\nCheck the 'logs/' directory for 'debug_nl2sql.log'.")
