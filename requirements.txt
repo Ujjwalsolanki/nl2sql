@@ -1,0 +1,21 @@
+# requirements.txt
+
+# Core Langchain libraries
+langchain-community
+langchain-core
+langchain-openai  # Or other specific LLM provider if not OpenAI
+
+# Database connector for MySQL
+pymysql
+
+# For parsing environment variables
+python-dotenv
+
+# For the frontend
+streamlit
+
+# For SQLAlchemy (used by database_utils.py)
+SQLAlchemy
+
+# For general utility (if needed, though often built-in)
+# You might add other specific libraries here as your project evolves.
